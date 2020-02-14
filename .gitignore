@@ -39,5 +39,5 @@ vignettes/*.pdf
 .Renviron
 
 
-src/test/*.*
+inst/test/*
 *.Rproj
