@@ -3,7 +3,7 @@ l=c(0.1,0.79)
 h=c(0.5,0.8)
 
 stat <- 0.1
-n=10000
+n=40000
 
 l=sapply(1:n,function(x)qbeta(stat,x,n-x+1))
 h=sapply(1:n,function(x)qbeta(1 - stat,x,n-x+1))
@@ -145,11 +145,16 @@ main1()
 x<-c(1,2,3,4,0,0,0,0)
 y<-c(4,5,6,7,0,0,0,0)
 
-x_f= FFT(x)
-y_f = FFT(y)
+testConv(x,y)
+x
 
-round(Re(FFT(x_f*y_f,inverse=T)),3)/length(x)
+x_f= fft(x)
+y_f = fft(y)
+
+round(Re(fft(x_f*y_f,inverse=T)),3)/length(x)
+
+x<-c(1,2,3,4,0,0)
+testfft(x)
 
 
-
-
+fft(x)

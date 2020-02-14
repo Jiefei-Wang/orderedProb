@@ -5,49 +5,34 @@
 
 using namespace Rcpp;
 
-// test
-SEXP test();
-RcppExport SEXP _orderedPvalue_test() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(test());
-    return rcpp_result_gen;
-END_RCPP
-}
-// test
-void test(SEXP x_real, SEXP x_img, SEXP y_real, SEXP y_img);
-RcppExport SEXP _orderedPvalue_test(SEXP x_realSEXP, SEXP x_imgSEXP, SEXP y_realSEXP, SEXP y_imgSEXP) {
+// testfft
+void testfft(Rcpp::NumericVector x);
+RcppExport SEXP _orderedPvalue_testfft(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type x_real(x_realSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type x_img(x_imgSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type y_real(y_realSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type y_img(y_imgSEXP);
-    test(x_real, x_img, y_real, y_img);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    testfft(x);
     return R_NilValue;
 END_RCPP
 }
-// testfft
-SEXP testfft(SEXP x_real);
-RcppExport SEXP _orderedPvalue_testfft(SEXP x_realSEXP) {
+// test
+void test();
+RcppExport SEXP _orderedPvalue_test() {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type x_real(x_realSEXP);
-    rcpp_result_gen = Rcpp::wrap(testfft(x_real));
-    return rcpp_result_gen;
+    test();
+    return R_NilValue;
 END_RCPP
 }
-// main1
-int main1(int N);
-RcppExport SEXP _orderedPvalue_main1(SEXP NSEXP) {
+// testConv
+void testConv(Rcpp::NumericVector x, Rcpp::NumericVector y);
+RcppExport SEXP _orderedPvalue_testConv(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type N(NSEXP);
-    rcpp_result_gen = Rcpp::wrap(main1(N));
-    return rcpp_result_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type y(ySEXP);
+    testConv(x, y);
+    return R_NilValue;
 END_RCPP
 }
 // compute_prob
@@ -82,10 +67,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_orderedPvalue_test", (DL_FUNC) &_orderedPvalue_test, 0},
-    {"_orderedPvalue_test", (DL_FUNC) &_orderedPvalue_test, 4},
     {"_orderedPvalue_testfft", (DL_FUNC) &_orderedPvalue_testfft, 1},
-    {"_orderedPvalue_main1", (DL_FUNC) &_orderedPvalue_main1, 1},
+    {"_orderedPvalue_test", (DL_FUNC) &_orderedPvalue_test, 0},
+    {"_orderedPvalue_testConv", (DL_FUNC) &_orderedPvalue_testConv, 2},
     {"_orderedPvalue_compute_prob", (DL_FUNC) &_orderedPvalue_compute_prob, 5},
     {"_orderedPvalue_compute_prob_fft", (DL_FUNC) &_orderedPvalue_compute_prob_fft, 5},
     {NULL, NULL, 0}
